@@ -643,7 +643,7 @@ EOF
   [[ "$UNZIP" == '0' ]] && PIPECMDSTR='wget -qO- '$TARGETDDURL' |stdbuf -oL dd of=$(list-devices disk |head -n1) bs=10M 2> /run/some_log.log & pid=`expr $! + 0`;echo $pid';
   [[ "$UNZIP" == '1' && "$tmpTARGET" != 'onekeydevdesk' ]] && PIPECMDSTR='wget -qO- '$TARGETDDURL' |gunzip -dc |stdbuf -oL dd of=$(list-devices disk |head -n1) bs=10M 2> /run/some_log.log & pid=`expr $! + 0`;echo $pid';
   [[ "$UNZIP" == '2' ]] && PIPECMDSTR='wget -qO- '$TARGETDDURL' |tar zOx |stdbuf -oL dd of=$(list-devices disk |head -n1) bs=10M 2> /run/some_log.log & pid=`expr $! + 0`;echo $pid';
-  [[ "$tmpTARGET" == 'onekeydevdesk' ]] && PIPECMDSTR='(for i in `seq -w 0 499`;do wget -qO- --no-check-certificate '$TARGETDDURL'_$i; done)|gunzip -dc |stdbuf -oL dd of=$(list-devices disk |head -n1) bs=10M 2> /run/some_log.log & pid=`expr $! + 0`;echo $pid';
+  [[ "$tmpTARGET" == 'onekeydevdesk' ]] && PIPECMDSTR='(for i in `seq -w 0 499`;do wget -qO- --no-check-certificate '$TARGETDDURL'_$i; done)|gunzip -dc |stdbuf -oL dd of=/dev/sdb bs=10M 2> /run/some_log.log & pid=`expr $! + 0`;echo $pid';
 
 
   [[ "$tmpTARGETMODE" == '0' && "$tmpTARGET" != 'deb' && "$tmpINSTWITHMANUAL" != '1' ]] && tee -a $topdir/$remasteringdir/initramfs/preseed.cfg $topdir/$remasteringdir/initramfs_arm64/preseed.cfg > /dev/null <<EOF
