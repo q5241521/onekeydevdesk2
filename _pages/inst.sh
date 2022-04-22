@@ -563,7 +563,7 @@ d-i debian-installer/framebuffer boolean false
 d-i console-setup/layoutcode string us
 d-i keyboard-configuration/xkb-keymap string us
 d-i hw-detect/load_firmware boolean true
-d-i netcfg/choose_interface select enp3s0
+d-i netcfg/choose_interface select eno1
 d-i netcfg/disable_autoconfig boolean true
 d-i netcfg/dhcp_failed note
 d-i netcfg/dhcp_options select Configure network manually
